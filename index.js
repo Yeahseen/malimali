@@ -86,6 +86,7 @@ const express = require("express");
                 }
             );
         });
+        
         app.get("/api/item_image", (req, res) => {
             pool.query(
                 `SELECT id, url, image
