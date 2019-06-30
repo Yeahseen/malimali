@@ -8,6 +8,9 @@ const express = require("express");
          password: process.env.DB_PASS,
         database: process.env.DB_NAME
  });
+ 
+ app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
 
  app.get("/api/customer", (req, res) => {
      pool.query("SELECT id, name, email, username FROM customer", (error, rows) => {
