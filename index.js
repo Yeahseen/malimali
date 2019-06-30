@@ -86,5 +86,20 @@ const express = require("express");
                 }
             );
         });
+        app.get("/api/item_image", (req, res) => {
+            pool.query(
+                `SELECT id, url, image
+                FROM item_image
+                WHERE id = ?`,
+                [req.params.id],
+                (error, rows) => {
+                    if (error) {
+                        return res.status(500).json({ error });
+                    }
+       
+                    res.json(rows);
+                }
+            );
+        });
         
           app.listen(9000, () => console.log("App listening on port 9000"));
