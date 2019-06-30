@@ -58,5 +58,33 @@ const express = require("express");
                 res.json(rows);
             });
         });
+        app.get("/api/item/:id", (req, res) => {
+            pool.query(
+                "SELECT name, price, description, review FROM item WHERE id = ?",
+                [req.params.id],
+                (error, rows) => {
+                    if (error) {
+                        return res.status(500).json({ error });
+                    }
+       
+                    res.json(rows);
+                }
+            );
+        });
+        app.get("/api/item/:id/name", (req, res) => {
+            pool.query(
+                `SELECT name, price, description ,review
+                FROM item
+                WHERE id = ?`,
+                [req.params.id],
+                (error, rows) => {
+                    if (error) {
+                        return res.status(500).json({ error });
+                    }
+       
+                    res.json(rows);
+                }
+            );
+        });
         
           app.listen(9000, () => console.log("App listening on port 9000"));
