@@ -89,7 +89,7 @@ const express = require("express");
                 }
             );
         });
-        
+
         app.get("/api/item_image", (req, res) => {
             pool.query(
                 `SELECT id, url, image
@@ -106,24 +106,25 @@ const express = require("express");
             );
         });
 
-        app.post("/api/customer", (req, res) => {
-                 const { id, name, email, address, username } = req.body;
-            
-                 if (!id || !name || !email || !address || !username ) {
-                     return res.status(400).json({ error: "Invalid payload" });
-                 }
-            
-                 pool.query(
-                     "INSERT INTO customer (id, name, email, address, username) VALUES (1, queen, queen@local.com, queens)",
-                     [id, name, email,address,username],
-                     (error, results) => {
-                         if (error) {
-                             return res.status(500).json({ error });
-                         }
-            
-                         res.json(results.insertId);
-                     }
-                 );
-             });
-            
+        
+ app.post("/api/customer", (req, res) => {
+     const customer = req.body;
+
+     if (!customer.name) {
+         return res.status(400).json({ error: "Invalid payload" });
+     }
+
+     pool.query(
+         "INSERT INTO cinema (name) VALUES (?)",
+         [customer.name],
+         (error, results) => {
+             if (error) {
+                 return res.status(500).json({ error });
+             }
+
+             res.json(results.insertId);
+         }
+     );
+ });
+
           app.listen(9000, () => console.log("App listening on port 9000"));
