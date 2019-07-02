@@ -115,7 +115,7 @@ const express = require("express");
      }
 
      pool.query(
-         "INSERT INTO cinema (name) VALUES (?)",
+         "INSERT INTO customer (id, name, email, address, username, password) VALUES (4, 'perpetual', 'perpetual@gmail.com', 'lomolo', 'pape', 'papes1') ",
          [customer.name],
          (error, results) => {
              if (error) {
@@ -126,5 +126,27 @@ const express = require("express");
          }
      );
  });
+
+ app.put("/api/customer/:id", (req, res) => {
+         const customer = req.body;
+    
+         if (!customer.name) {
+             return res.status(400).json({ error: "Invalid payload" });
+         }
+    
+         pool.query(
+              "UPDATE customer SET name = 'shiundu', email = 'shiundu@gmail.com', username = 'daddy' WHERE id = 3",
+             [customer.name, req.params.id],
+             (error, results) => {
+                 if (error) {
+                     return res.status(500).json({ error });
+                 }
+    
+                 res.json(results.changedRows);
+             }
+         );
+     });
+
+
 
           app.listen(9000, () => console.log("App listening on port 9000"));
