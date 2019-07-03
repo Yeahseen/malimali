@@ -115,7 +115,7 @@ const express = require("express");
      }
 
      pool.query(
-         "INSERT INTO customer (id, name, email, address, username, password) VALUES (?, '?', '?', '?', '?', '?') ",
+         "INSERT INTO customer (id, name, email, address, username, password) VALUES ( '?', '?', '?', '?', '?') ",
          [customer.name],
          (error, results) => {
              if (error) {
