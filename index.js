@@ -92,7 +92,7 @@ const express = require("express");
 
         app.get("/api/item_image", (req, res) => {
             pool.query(
-                `SELECT id, url, image
+                `SELECT image, url, id
                 FROM item_image
                 WHERE id = ?`,
                 [req.params.id],
@@ -127,7 +127,25 @@ const express = require("express");
                  );
              });
         
-
+             app.post("/api/customer", (req, res) => {
+                const customer = req.body;
+           
+                if (!customer.name || !customer.email || !customer.address || !customer.username || !customer.password) {
+                    return res.status(400).json({ error: "Invalid payload" });
+                }
+           
+                pool.query(
+                    "INSERT INTO customer (name, email, address, username, password) VALUES (?, ?, ?, ?, ?)",
+                    [customer.name, customer.email, customer.address, customer.username, customer.password],
+                    (error, results) => {
+                        if (error) {
+                            return res.status(500).json({ error });
+                        }
+           
+                        res.json(results.insertId);
+                    }
+                );
+            });
 
  app.put("/api/customer/:id", (req, res) => {
          const customer = req.body;
