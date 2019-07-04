@@ -107,25 +107,27 @@ const express = require("express");
         });
 
         
- app.post("/api/customer", (req, res) => {
-     const customer = req.body;
+        app.post("/api/item", (req, res) => {
+                 const item = req.body;
+            
+                 if (!item.name || !item.price || !item.Description || !item.Review) {
+                     return res.status(400).json({ error: "Invalid payload" });
+                 }
+            
+                 pool.query(
+                     "INSERT INTO item (name, price, Description, Review) VALUES (?, ?, ?, ?)",
+                     [item.name, item.price, item.Description, item.Review],
+                     (error, results) => {
+                         if (error) {
+                             return res.status(500).json({ error });
+                         }
+            
+                         res.json(results.insertId);
+                     }
+                 );
+             });
+        
 
-     if (!customer.name) {
-         return res.status(400).json({ error: "Invalid payload" });
-     }
-
-     pool.query(
-         "INSERT INTO customer (id, name, email, address, username, password) VALUES ( ?, n'?', '?', '?', '?', '?') ",
-         [customer.name],
-         (error, results) => {
-             if (error) {
-                 return res.status(500).json({ error });
-             }
-
-             res.json(results.insertId);
-         }
-     );
- });
 
  app.put("/api/customer/:id", (req, res) => {
          const customer = req.body;
