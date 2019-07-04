@@ -147,6 +147,27 @@ const express = require("express");
                 );
             });
 
+            app.post("/api/item_image", (req, res) => {
+                const item_image = req.body;
+           
+                if (!item_image.image || !item_image.url) {
+                    return res.status(400).json({ error: "Invalid payload" });
+                }
+           
+                pool.query(
+                    "INSERT INTO item_image (image, url) VALUES (?, ?)",
+                    [item_image.image, item_image.url],
+                    (error, results) => {
+                        if (error) {
+                            return res.status(500).json({ error });
+                        }
+           
+                        res.json(results.insertId);
+                    }
+                );
+            });
+
+
  app.put("/api/customer/:id", (req, res) => {
          const customer = req.body;
     
