@@ -61,6 +61,7 @@ const express = require("express");
                 res.json(rows);
             });
         });
+
         app.get("/api/item/:id", (req, res) => {
             pool.query(
                 "SELECT name, price, description, review FROM item WHERE id = ?",
@@ -74,6 +75,7 @@ const express = require("express");
                 }
             );
         });
+
         app.get("/api/item/:id/name", (req, res) => {
             pool.query(
                 `SELECT name, price, description ,review
@@ -91,10 +93,18 @@ const express = require("express");
         });
 
         app.get("/api/item_image", (req, res) => {
+            pool.query("SELECT image, url, id FROM item_image", (error, rows) => {
+                if (error) {
+                    return res.status(500).json({ error });
+                }
+       
+                res.json(rows);
+            });
+        });
+
+        app.get("/api/item_image/:id", (req, res) => {
             pool.query(
-                `SELECT image, url, id
-                FROM item_image
-                WHERE id = ?`,
+                "SELECT image, url FROM item_image WHERE id = ?",
                 [req.params.id],
                 (error, rows) => {
                     if (error) {
@@ -106,7 +116,6 @@ const express = require("express");
             );
         });
 
-        
         app.post("/api/item", (req, res) => {
                  const item = req.body;
             
@@ -168,26 +177,84 @@ const express = require("express");
             });
 
 
- app.put("/api/customer/:id", (req, res) => {
-         const customer = req.body;
-    
-         if (!customer.name) {
-             return res.status(400).json({ error: "Invalid payload" });
-         }
-    
-         pool.query(
-              "UPDATE customer SET name = 'shiundu', email = 'shiundu@gmail.com', username = 'daddy' WHERE id = 3",
-             [customer.name, req.params.id],
-             (error, results) => {
-                 if (error) {
-                     return res.status(500).json({ error });
-                 }
-    
-                 res.json(results.changedRows);
+            app.put("/api/item/:id", (req, res) => {
+                     const item = req.body;
+                
+                     if (!item.name || !item.price || !item.Description || !item.Review) {
+                         return res.status(400).json({ error: "Invalid payload" });
+                     }
+                                    pool.query(
+                         "UPDATE item SET name = ?, price = ?, Description = ?, Review = ? WHERE id = ?",
+                         [item.name, item.price, item.Description, item.Review, req.params.id],
+                         (error, results) => {
+                             if (error) {
+                                 return res.status(500).json({ error });
+                             }
+                
+                             res.json(results.changedRows);
+                         }
+                    );
+                 });
+                
+                 app.put("/api/customer/:id", (req, res) => {
+                    const customer = req.body;
+               
+                    if (!customer.name  || !customer.email || !customer.address || !customer.username || !customer.password) {
+                        return res.status(400).json({ error: "Invalid payload" });
+                    }
+                                   pool.query(
+                        "UPDATE item SET name = ?,email = ?,address = ?,username = ?,password = ?WHERE id = ?",
+                        [customer.name, customer.email, customer.address, customer.username, customer.password, req.params.id],
+                        (error, results) => {
+                            if (error) {
+                                return res.status(500).json({ error });
+                            }
+               
+                            res.json(results.changedRows);
+                        }
+                   );
+                });
+
+                
+ app.delete("/api/item/:id", (req, res) => {
+     pool.query(
+         "DELETE FROM item WHERE id = ?",
+         [req.params.id],
+         (error, results) => {
+             if (error) {
+                 return res.status(500).json({ error });
              }
-         );
-     });
 
+             res.json(results.affectedRows);
+         }
+     );
+ });
 
+ app.delete("/api/customer/:id", (req, res) => {
+    pool.query(
+        "DELETE FROM customer WHERE id = ?",
+        [req.params.id],
+        (error, results) => {
+            if (error) {
+                return res.status(500).json({ error });
+            }
 
+            res.json(results.affectedRows);
+        }
+    );
+});
+
+app.delete("/api/item_image/:id", (req, res) => {
+    pool.query(
+        "DELETE FROM item_image WHERE id = ?",
+        [req.params.id],
+        (error, results) => {
+            if (error) {
+                return res.status(500).json({ error });
+            }
+
+            res.json(results.affectedRows);
+        }
+    );
+});
           app.listen(9000, () => console.log("App listening on port 9000"));
