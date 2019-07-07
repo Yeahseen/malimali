@@ -93,7 +93,7 @@ const express = require("express");
         });
 
         app.get("/api/item_image", (req, res) => {
-            pool.query("SELECT image, url, id FROM item_image", (error, rows) => {
+            pool.query("SELECT id, image, url FROM item_image", (error, rows) => {
                 if (error) {
                     return res.status(500).json({ error });
                 }
@@ -159,13 +159,13 @@ const express = require("express");
             app.post("/api/item_image", (req, res) => {
                 const item_image = req.body;
            
-                if (!item_image.image || !item_image.url) {
+                if (!item_image.id || !item_image.image || !item_image.url) {
                     return res.status(400).json({ error: "Invalid payload" });
                 }
            
                 pool.query(
-                    "INSERT INTO item_image (image, url) VALUES (?, ?)",
-                    [item_image.image, item_image.url],
+                    "INSERT INTO item_image (id, image, url) VALUES (?, ?, ?)",
+                    [item_image.id, item_image.image, item_image.url],
                     (error, results) => {
                         if (error) {
                             return res.status(500).json({ error });
@@ -199,12 +199,31 @@ const express = require("express");
                  app.put("/api/customer/:id", (req, res) => {
                     const customer = req.body;
                
-                    if (!customer.name  || !customer.email || !customer.address || !customer.username || !customer.password) {
+                    if (!customer.name || !customer.email ||!customer.address || !customer.username || !customer.password) {
                         return res.status(400).json({ error: "Invalid payload" });
                     }
                                    pool.query(
-                        "UPDATE item SET name = ?,email = ?,address = ?,username = ?,password = ?WHERE id = ?",
+                        "UPDATE customer SET name = ?, email = ?, address = ?, username = ?, password = ? WHERE id = ?",
                         [customer.name, customer.email, customer.address, customer.username, customer.password, req.params.id],
+                        (error, results) => {
+                            if (error) {
+                                return res.status(500).json({ error });
+                            }
+               
+                            res.json(results.changedRows);
+                        }
+                   );
+                });
+
+                app.put("/api/item_image/:id", (req, res) => {
+                    const item_image = req.body;
+               
+                    if (!item_image.image || !item_image.url ) {
+                        return res.status(400).json({ error: "Invalid payload" });
+                    }
+                                   pool.query(
+                        "UPDATE item_image SET image = ?, url = ? WHERE id = ?",
+                        [item_image.image, item_image.url, req.params.id],
                         (error, results) => {
                             if (error) {
                                 return res.status(500).json({ error });
