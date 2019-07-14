@@ -21,6 +21,7 @@ const express = require("express");
          res.json(rows);
      });
  });
+
  app.get("/api/customer/:id", (req, res) => {
          pool.query(
              "SELECT id, name, email, address, username FROM customer WHERE id = ?",
