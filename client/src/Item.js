@@ -1,6 +1,8 @@
 import React from "react";
-export function Item({ ItemList }) {
-    const { id, name, price, review } = ItemList;
+import { Link } from "@reach/router";
+
+ function Item({ popularItems }) {
+    const {id, name, price, review } = Item;
     let reviewText = "";
     if (review === 0) {
         reviewText = "Not reviewed yet";
@@ -21,6 +23,9 @@ export function Item({ ItemList }) {
             <a href={`/item/${id}`} className="mvls-btn mvls-btn-cinemas">
                 See Item
                 </a>
+                <Link to={`/Item/${id}`} className="mvls-btn mvls-btn-cinemas">
+                     See Cinemas
+                 </Link>
         </div>
     </div>);
 }
