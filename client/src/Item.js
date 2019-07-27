@@ -11,7 +11,7 @@ import { Link } from "@reach/router";
         reviewText = "rated 1";
     }
     else {
-        reviewText = `rated ${review} `;
+        reviewText = `rated ${ review} `;
     }
     return (<div className="mvls-item">
         <img className="mvls-review" src={price} alt={name} />
@@ -24,7 +24,7 @@ import { Link } from "@reach/router";
                 See Item
                 </a>
                 <Link to={`/Item/${id}`} className="mvls-btn mvls-btn-cinemas">
-                     See Cinemas
+                     See Item
                  </Link>
         </div>
     </div>);
