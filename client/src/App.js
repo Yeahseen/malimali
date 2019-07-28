@@ -7,7 +7,6 @@ import Admin from "./Admin"
  import NotFound from "./NotFound";
 import "./App.css";
 
-// This is static hard-coded data, we shall later fetch it from our server
 
 
 function App() {

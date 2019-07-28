@@ -8,7 +8,6 @@ import axios from "axios";
              super(props);
              this.state = {
                  itemDetails: [],
-                 cinemas: [],
                  loading: false,
                  error: false
              };
@@ -22,16 +21,14 @@ import axios from "axios";
              this.setState({ loading: true, error: false });
     
              const { itemId } = this.props;
-             const itemDetailsPromise = axios.get(`/api/item/${itemId}`);
-             const cinemasPromise = axios.get(`/api/item/${itemId}/cinemas`);
+             const itemDetailsPromise = axios.get(`/api/item/${itemId}`)
     
              axios
-                 .all([itemDetailsPromise, cinemasPromise])
+                 .all([itemDetailsPromise ])
                  .then(
-                     axios.spread((itemDetailsResponse, cinemasResponse) => {
+                     axios.spread((itemDetailsResponse) => {
                          this.setState({
-                             movieDetails: itemDetailsResponse.data,
-                             cinemas: cinemasResponse.data,
+                             itemDetails: itemDetailsResponse.data,
                              loading: false,
                              error: false
                          });
@@ -40,24 +37,15 @@ import axios from "axios";
                  .catch(error => {
                      this.setState({
                          itemDetails: [],
-                         cinemas: [],
                          loading: false,
                          error: true
                      });
                  });
          }
-    
-         toDateString(dateTime) {
-             const date = new Date(dateTime);
-             const year = date.getFullYear();
-             const month = date.getMonth() + 1;
-             const day = date.getDate();
-    
-             return `${year}-${month}-${day}`;
-         }
+         
     
          render() {
-             const { itemDetails, cinemas, loading, error } = this.state;
+             const { itemDetails, loading, error } = this.state;
     
              if (loading) {
                  return <Loading />;
@@ -69,103 +57,39 @@ import axios from "axios";
     
              if (itemDetails.length !== 1) {
              return (
-                     <Error message="Sorry, the movie does not exist. Please retry." />
+                     <Error message="Sorry, the item does not exist. Please retry." />
                  );
              }
     
              const {
-                 title,
-                 description,
-                 genres,
-                 duration,
-                 release_year,
-                 poster_url
+                 name,
+                 Description,
+                 Review,
+                 price,
+                 url
              } = itemDetails[0];
-             const cinemaNameDateStrings = cinemas.map(cinema => {
-                 const dateString = this.toDateString(cinema.time);
-    
-                 return `${cinema.name}:${dateString}`;
-             });
-             const uniqueCinemaNameDateStrings = [...new Set(cinemaNameDateStrings)];
-             const cinemasPlayingMovie = uniqueCinemaNameDateStrings.map(
-                 cinemaNameDate => {
-                     const cinemaName = cinemaNameDate.split(":")[0];
-                     const datePlaying = cinemaNameDate.split(":")[1];
-                     const times = cinemas
-                      .filter(
-                             cinema =>
-                                 cinema.name === cinemaName &&
-                                 this.toDateString(cinema.time) === datePlaying
-                         )
-                         .map(cinema => {
-                             const timeFormatter = new Intl.DateTimeFormat("en", {
-                                 hour: "numeric",
-                                 minute: "numeric",
-                                 hour12: true
-                             });
-    
-                             return timeFormatter.format(new Date(cinema.time));
-                         });
-    
-                     const dateFormatter = new Intl.DateTimeFormat("en", {
-                         weekday: "long",
-                         year: "numeric",
-                         month: "long",
-                         day: "numeric"
-                     });
-    
-                     return {
-                         cinemaName,
-                         datePlaying: dateFormatter.format(new Date(datePlaying)),
-                         times
-                     };
-                 }
-             );
+             
     
              return (
                  <div className="mvls-container">
-                     <div className="mvls-movie-details-wrapper">
-                         <div className="mvls-movie-details">
+                     <div className="mvls-item-details-wrapper">
+                         <div className="mvls-item-details">
                              <img
-                                 className="mvls-movie-details-poster"
-                                 src={poster_url}
-                                 alt={title}
+                                 className="mvls-item-details-poster"
+                                 src={url}
+                                 alt={name}
                              />
-                             <div className="mvls-movie-details-info">
-                                 <h2>{title}</h2>
-                                 <p>{description}</p>
+                             <div className="mvls-item-details-info">
+                                 <h2>{name}</h2>
+                                 <p>{Description}</p>
                                  <p>
-                                     <span>Genre</span>: {genres}
+                                     <span>Review</span>: {Review}
                                  </p>
                                  <p>
-                                     <span>Duration</span>: {duration} minutes
-                                 </p>
-                                 <p>
-                                     <span>Year</span>: {release_year}
+                                     <span>price</span>: {price} minutes
                                  </p>
                              </div>
                          </div>
-                     </div>
-                     <div className="mvls-movie-cinemas">
-                         <h2>List of Cinemas playing Movie</h2>
-                         {cinemasPlayingMovie.map(cinema => {
-                             const { cinemaName, datePlaying, times } = cinema;
-    
-                             return (
-                                 <div
-                                     key={`${cinemaName}:${datePlaying}`}
-                                     className="mvls-movie-cinema"
-                                 >
-                                     <h3>{cinemaName}</h3>
-                                     <p>{datePlaying}</p>
-                                     <p>
-                                         {times.map(time => (
-                                             <span key={time}>{time}</span>
-                                         ))}
-                                     </p>
-                                 </div>
-                             );
-                         })}
                      </div>
                  </div>
              );

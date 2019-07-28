@@ -14,16 +14,17 @@ import { Link } from "@reach/router";
         reviewText = `rated ${ review} `;
     }
     return (<div className="mvls-item">
-        <img className="mvls-review" src={price} alt={name} />
-        <div className="mvls-movie-body">
+        <img className="mvls-name" src={price} alt={name} />
+        <div className="mvls-item-body">
             <div className="mvls-name">{name}</div>
-            <p className="mvls-review">{reviewText}</p>
+            <div className="mvls-price">{price}</div>
+            <p className="mvls-name">{reviewText}</p>
         </div>
-        <div className="mvls-movie-footer">
-            <a href={`/item/${id}`} className="mvls-btn mvls-btn-cinemas">
+        <div className="mvls-item-footer">
+            <a href={`/item/${id}`} className="mvls-btn mvls-btn-items">
                 See Item
                 </a>
-                <Link to={`/Item/${id}`} className="mvls-btn mvls-btn-cinemas">
+                <Link to={`/Item/${id}`} className="mvls-btn mvls-btn-items">
                      See Item
                  </Link>
         </div>
