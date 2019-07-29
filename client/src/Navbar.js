@@ -6,9 +6,9 @@ function NavBar() {
         <div className="mvls-container">
             <nav className="mvls-nav">
                 <span className="mvls-title">Popular items</span>
-                <Link to="/">items</Link>
-                 <Link to="/login"></Link>
-                 <Link to="/admin">Admin</Link>
+                <a href= "/"> login</a>
+                <Link to="/item">items</Link>
+                 <Link to="/Admin">Admin</Link>
             </nav>
         </div>
     );
