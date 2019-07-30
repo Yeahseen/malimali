@@ -39,7 +39,7 @@
 .mvls-nav a {
   font-size: 0.875rem;
   margin-right: 10px;
-  color: #4299e1;
+  color: #26c549;
   text-decoration: none;
 }
 
@@ -50,16 +50,22 @@
 
 .mvls-item-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.mvls-container .mvls-Item-List{
+  display: flex;
+  flex-direction: row;
+}
+
 
 .mvls-item {
   display: flex;
   flex-direction: column;
   border-radius: 0.25rem;
-  background-color: #fff;
+  background-color: rgb(156, 68, 68);
   margin: 15px;
   width: 280px;
 }
