@@ -48,7 +48,7 @@
   padding-bottom: 100px
 }
 
-.mvls-item-list {
+.mvls-Item-List {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -125,7 +125,7 @@
        font-size: 1.5rem;
        font-weight: 300;
        line-height: 1.5;
-       color: #606f7b;
+       color: #ced9e2;
        margin: 2rem;
        text-align: center;
    }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./App.css"
+
  function Item({ popularItem }) {
     const {id, name, url, price, review } = popularItem;
     let reviewText = "";
@@ -14,7 +15,7 @@ import "./App.css"
         reviewText = `rated ${ review} `;
     }
     return (<div className="mvls-item">
-        <img className="mvls-image" src={"no-poster.jpg" } alt={url}  />
+        <img className="mvls-image" src={"lion.jpg" } alt={url}  />
         <div className="mvls-item-body">
             <div className="mvls-name">{name}</div>
             <div className="mvls-name">{price}</div>
