@@ -56,8 +56,8 @@ class ItemList extends React.Component {
     return (
         <div className="mvls-container">
             <div className="mvls-Item-List">
-            {Item(id => (
-                        <Items key={id} Items={id} />
+            {Items.map(item => (
+                        <Item key={item.id} popularItem={item} />
                     ))}
                
             </div>

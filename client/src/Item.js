@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
 import "./App.css"
- function Item({ popularItems }) {
-    const {id, name, url, price, review } = Item;
+ function Item({ popularItem }) {
+    const {id, name, url, price, review } = popularItem;
     let reviewText = "";
     if (review === 0) {
         reviewText = "Not reviewed yet";

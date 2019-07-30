@@ -9,7 +9,7 @@ function ItemTable({
     onDeleteItem
 }) {
     if (tableLoading) {
-        return <p className="mvls-table-loading">Loading movies...</p>;
+        return <p className="mvls-table-loading">Loading items...</p>;
     }
 
     return (
@@ -27,14 +27,12 @@ function ItemTable({
             <table>
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Title</th>
-                        <th>Release Year</th>
-                        <th>Duration</th>
-                        <th>Poster URL</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
                         <th>Description</th>
-                        <th>Genres</th>
-                        <th>Action</th>
+                        <th>Review</th>
+                        <th>Image Url</th>
                     </tr>
                 </thead>
                 {items.length === 0 && (
@@ -53,10 +51,9 @@ function ItemTable({
                                 id,
                                 name,
                                 price,
-                                Review,
-                                url,
                                 Description,
-                                image
+                                Review,
+                                image_url
                             } = item;
 
                             return (
@@ -64,14 +61,13 @@ function ItemTable({
                                     <td>{index + 1}</td>
                                     <td>{name}</td>
                                     <td>{price}</td>
-                                    <td>{Review}</td>
-                                    <td>{url}</td>
                                     <td>{Description}</td>
-                                    <td>{image}</td>
+                                    <td>{Review}</td>
+                                    <td>{image_url}</td>
                                     <td>
                                         <span
                                             className="mvls-table-link"
-                                            onClick={onEditItem(item)}
+                                            onClick={(item)}
                                         >
                                             Edit
                                         </span>
