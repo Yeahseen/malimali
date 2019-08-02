@@ -62,7 +62,7 @@ function ItemForm({
                     <label htmlFor="price">Price</label>
                     <div className="mvls-form-input-group">
                         <input
-                            type="number"
+                            type="text"
                             name="price"
                             className={
                                 validationErrors.releaseYear ? "has-error" : ""

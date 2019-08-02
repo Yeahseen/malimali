@@ -328,6 +328,8 @@
           padding-top: 0.375rem;
           padding-bottom: 0.375rem;
           line-height: 1.5;
+          position: relative;
+          left: 1.5rem;
        }
       
        .mvls-form input[type="text"],

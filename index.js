@@ -54,7 +54,7 @@ const express = require("express");
          });
 
          app.get("/api/item", (req, res) => {
-            pool.query("SELECT id, name, description, review, price FROM item", (error, rows) => {
+            pool.query("SELECT a.id, a.name, a.description, a.review, a.price, b.url FROM item As a RIGHT JOIN item_image AS b ON a.id = b.id", (error, rows) => {
                 if (error) {
                     return res.status(500).json({ error });
                 }

@@ -3,7 +3,8 @@ import { Router } from "@reach/router";
 import Navbar from "./Navbar";
 import ItemList from "./ItemList";
 import ItemDetails from "./ItemDetails";
-import Admin from "./Admin"
+import Admin from "./Admin";
+import login from "./login";
  import NotFound from "./NotFound";
 import "./App.css";
 
@@ -20,9 +21,12 @@ function App() {
                      <ItemList path="/" />
                      <ItemDetails path="/item/:itemId" />
                      <Admin path="/Admin" />
+                     {/* <login path="/Login" /> */}
                      <NotFound default />
                  </Router>
+                 <login />
             </main>
+            
         </div>
     );
 }
