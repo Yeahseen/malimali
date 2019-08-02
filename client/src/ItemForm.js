@@ -38,7 +38,7 @@ function ItemForm({
             )}
             <div className="mvls-form-row">
                 <div className="mvls-form-col">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title">Name</label>
                     <div className="mvls-form-input-group">
                         <input
                             type="text"
@@ -59,7 +59,7 @@ function ItemForm({
                     </div>
                 </div>
                 <div className="mvls-form-col">
-                    <label htmlFor="price">price</label>
+                    <label htmlFor="price">Price</label>
                     <div className="mvls-form-input-group">
                         <input
                             type="number"
@@ -82,28 +82,7 @@ function ItemForm({
             </div>
             <div className="mvls-form-row">
                 <div className="mvls-form-col">
-                    <label htmlFor="Review">Review</label>
-                    <div className="mvls-form-input-group">
-                        <input
-                            type="number"
-                            name="Review"
-                            className={
-                                validationErrors.duration ? "has-error" : ""
-                            }
-                            autoComplete="off"
-                            value={Review}
-                            onChange={handleChange}
-                            disabled={formSubmitting}
-                        />
-                        {validationErrors.duration && (
-                            <span className="mvls-form-input-error">
-                                {validationErrors.duration}
-                            </span>
-                        )}
-                    </div>
-                </div>
-                <div className="mvls-form-col">
-                    <label htmlFor="url">URL</label>
+                <label htmlFor="url">Image Link</label>
                     <div className="mvls-form-input-group">
                         <input
                             type="text"
@@ -147,7 +126,7 @@ function ItemForm({
                     </div>
                 </div>
                 <div className="mvls-form-col">
-                    <label>Genres</label>
+                    <label>Review</label>
                     <div className="mvls-form-input-group">
                         <div className="mvls-checkbox-group">
                             <label>

@@ -31,9 +31,28 @@
   min-height: 48px;
 }
 
-.mvls-nav .mvls-title {
-  font-size: 1.5rem;
-  margin-right: 10px;
+.mvls-nav .mvls-home {
+  font-size: 3.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mvls-nav .mvls-top {
+  font-size: 2.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  min-height: 30px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  position: absolute;
+  right: 300px;
 }
 
 .mvls-nav a {
@@ -43,9 +62,57 @@
   text-decoration: none;
 }
 
+.mvls-nav c {
+  font-size: 2.009rem;
+  padding: 0.5rem 1rem;
+  margin-right: 100px;
+  color: #080808;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.mvls-nav b {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  margin-left: 10px;
+  color: #26c549;
+  border-radius: 0.25rem;
+  position: absolute;
+  right: 50px;
+  text-decoration: none;
+  background-color: rgb(7, 7, 6);
+}
+
 .mvls-main {
   padding-top: 51px;
   padding-bottom: 100px
+}
+
+.mvls-search{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  min-height: 30px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.mvls-container .mvls-search{
+  display: flex;
+  flex-direction: column;
+}
+
+.mvls-search-item {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  margin-left: 10px;
+  color: #26c549;
+  border-radius: 0.25rem;
+  position: absolute;
+  right: 50px;
+  text-decoration: none;
+  background-color: rgb(7, 7, 6);
 }
 
 .mvls-Item-List {
@@ -65,7 +132,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 0.25rem;
-  background-color: rgb(156, 68, 68);
   margin: 15px;
   width: 280px;
 }
@@ -74,18 +140,20 @@
   width: 100%;
   height: 280px;
   object-fit: cover;
-  background: url("./no-poster.jpg") 0px 0px no-repeat;
+  border-radius: 1.0rem;
+  background: #d4edda;
 }
 
 .mvls-item-body {
   padding: 1rem 1.5rem;
+  border-radius: 1.0rem;
   text-align: center;
 }
 
 .mvls-item .mvls-name {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 650;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -169,7 +237,7 @@
        max-width: 280px;
        height: 280px;
        object-fit: cover;
-       background: url("./no-poster.jpg") 0px 0px no-repeat;
+       background: url("no-poster.jpg") 0px no-repeat;
      }
     
      .mvls-movie-details-info {

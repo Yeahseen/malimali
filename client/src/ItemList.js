@@ -3,6 +3,7 @@ import axios from  "axios";
 import Item from "./Item";
 import Loading from "./Loading";
 import Error from "./Error";
+import { Link } from "@reach/router";
 
 
 class ItemList extends React.Component {
@@ -55,6 +56,18 @@ class ItemList extends React.Component {
         
     return (
         <div className="mvls-container">
+            <div className="mvls-search">
+                <div className="mvls-search-item">
+                    <b>
+                     <Link to= "/search">
+                         search
+                    </Link>
+                    </b>
+                    </div>
+            </div>
+            <nav className="mvls-nav">
+            <span className="mvls-top">Popular Items</span>
+            </nav>
             <div className="mvls-Item-List">
             {Items.map(item => (
                         <Item key={item.id} popularItem={item} />

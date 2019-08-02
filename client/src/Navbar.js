@@ -5,12 +5,15 @@ function NavBar() {
     return (
         <div className="mvls-container">
             <nav className="mvls-nav">
-                <span className="mvls-title">Popular items</span>
-                <a href= "/login"> login</a>
+                <span className="mvls-home">
+                    <c href to="./home">HOME</c>
+                </span>
+                <b><Link to= "/login"> login</Link> </b>
                 <a href = "/Checkout">check out</a>
                 <Link to="/item">items</Link>
-                 <Link to="/Admin">Admin</Link>
+                 <Link to="/Admin">Admin</Link> 
             </nav>
+            
         </div>
     );
 }
