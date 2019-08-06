@@ -2,7 +2,7 @@ import React from "react";
 
 function ItemForm({
     name,
-     price,
+    price,
     Description,
     Review,
     url,
@@ -38,11 +38,11 @@ function ItemForm({
             )}
             <div className="mvls-form-row">
                 <div className="mvls-form-col">
-                    <label htmlFor="title">Name</label>
+                    <label htmlFor="name">Name</label>
                     <div className="mvls-form-input-group">
                         <input
                             type="text"
-                            name="title"
+                            name="name"
                             className={
                                 validationErrors.title ? "has-error" : ""
                             }

@@ -23,7 +23,7 @@ import "./App.css"
         </div>
         <div className="mvls-item-footer">
             
-                <Link to={`/Item/${id}`} className="mvls-btn mvls-btn-items">
+                <Link to={`/ItemDetails/${id}`} className="mvls-btn mvls-btn-items">
                      See Item
                  </Link>
         </div>

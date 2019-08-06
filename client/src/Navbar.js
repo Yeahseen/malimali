@@ -8,9 +8,9 @@ function NavBar() {
                 <span className="mvls-home">
                     <c href to="./home">HOME</c>
                 </span>
-                <b><Link to= "/login"> login</Link> </b>
+                <b><Link to= "/Login"> login</Link> </b>
                 <a href = "/Checkout">check out</a>
-                <Link to="/item">items</Link>
+                <Link to="/ItemDetails">items</Link>
                  <Link to="/Admin">Admin</Link> 
             </nav>
             

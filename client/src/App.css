@@ -203,13 +203,13 @@
        }
    }
 
-    .mvls-movie-details-wrapper {
+    .mvls-item-details-wrapper {
        display: flex;
        flex-direction: column;
        align-items: center;
      }
     
-     .mvls-movie-details {
+     .mvls-item-details {
        display: flex;
        flex-direction: column;
        border-radius: 0.25rem;
@@ -219,17 +219,17 @@
      }
     
      @media (min-width: 720px) {
-       .mvls-movie-details-wrapper {
+       .mvls-item-details-wrapper {
            padding: 0.5rem 1rem;
        }
     
-       .mvls-movie-details {
+       .mvls-item-details {
            flex-direction: row;
            width: 100%;
        }
      }
     
-     .mvls-movie-details .mvls-movie-details-poster {
+     .mvls-item-details .mvls-item-details-poster {
        display: flex;
        align-self: center;
        min-width: 280px;
@@ -239,43 +239,43 @@
        background: url("no-poster.jpg") 0px no-repeat;
      }
     
-     .mvls-movie-details-info {
+     .mvls-item-details-info {
        display: flex;
        flex-direction: column;
        justify-content: space-between;
        padding: 1rem 1.5rem;
      }
     
-     .mvls-movie-details-info h2 {
+     .mvls-item-details-info h2 {
        margin: 8px 0;
      }
     
-     .mvls-movie-details-info p {
+     .mvls-item-details-info p {
        margin: 4px 0;
      }
     
-     .mvls-movie-details-info p span {
+     .mvls-item-details-info p span {
        font-weight: bold;
      }
     
-     .mvls-movie-cinemas {
+     .mvls-item-cinemas {
        padding: 0.5rem 1rem;
      }
     
-     .mvls-movie-cinema {
+     .mvls-item-cinema {
        border-radius: 0.25rem;
        background-color: #fff;
        padding: 15px;
        margin-bottom: 15px;
      }
     
-     .mvls-movie-cinema p:last-child {
+     .mvls-item-cinema p:last-child {
        display: flex;
        flex-direction: row;
        flex-wrap: wrap;
      }
     
-     .mvls-movie-cinema p span {
+     .mvls-item-cinema p span {
        border: 1px solid #777;
        border-radius: 1rem;
        background-color: #ddd;
@@ -283,7 +283,7 @@
        margin: 5px 10px 5px 0;
        white-space: nowrap;
      }
-     .mvls-cinema-admin h1 {
+     .mvls-item-admin h1 {
          padding: 0;
        }
       

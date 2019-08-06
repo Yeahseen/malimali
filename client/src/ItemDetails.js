@@ -7,7 +7,7 @@ import axios from "axios";
          constructor(props) {
              super(props);
              this.state = {
-                 itemDetails: [],
+                 ItemDetails: [],
                  loading: false,
                  error: false
              };
@@ -26,9 +26,9 @@ import axios from "axios";
              axios
                  .all([itemDetailsPromise ])
                  .then(
-                     axios.spread((itemDetailsResponse) => {
+                     axios.spread((ItemDetailsResponse) => {
                          this.setState({
-                             itemDetails: itemDetailsResponse.data,
+                             itemDetails: ItemDetailsResponse.data,
                              loading: false,
                              error: false
                          });
@@ -45,7 +45,7 @@ import axios from "axios";
          
     
          render() {
-             const { itemDetails, loading, error } = this.state;
+             const { ItemDetails, loading, error } = this.state;
     
              if (loading) {
                  return <Loading />;
@@ -55,7 +55,7 @@ import axios from "axios";
                  return <Error />;
              }
     
-             if (itemDetails.length !== 1) {
+             if (ItemDetails.length !== 1) {
              return (
                      <Error message="Sorry, the item does not exist. Please retry." />
                  );
@@ -67,7 +67,7 @@ import axios from "axios";
                  Review,
                  price,
                  url
-             } = itemDetails[0];
+             } = ItemDetails[0];
              
     
              return (

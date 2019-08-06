@@ -67,19 +67,23 @@ class ItemAdmin extends React.Component {
         } = data;
 
         if (!name) {
-            validationErrors.title = "This field is required";
+            validationErrors.name = "This field is required";
         }
 
         if (!price) {
-            validationErrors.duration = "This field is required";
+            validationErrors.price = "This field is required";
         }
 
         if (!Description) {
-            validationErrors.description = "This field is required";
+            validationErrors.Description = "This field is required";
         }
 
         if (!Review) {
-            validationErrors.posterUrl = "This field is required";
+            validationErrors.Review = "This field is required";
+        }
+
+        if (!url){
+            validationErrors.url="input url";
         }
 
         if (Array.isArray(url) && url.length === 0) {
@@ -149,7 +153,7 @@ class ItemAdmin extends React.Component {
                     .then(response => {
                         this.resetFormState();
 
-                        const index = items.findIndex(c => c.id === id);
+                        const index = items.findIndex(item => item.id === id);
                         this.setState({
                                                          formSuccess: true
                                                      });
@@ -239,7 +243,7 @@ class ItemAdmin extends React.Component {
                 axios
                     .delete(`/api/item/${id}`)
                     .then(response => {
-                        const index = items.findIndex(c => c.id === id);
+                        const index = items.findIndex(item => item.id === id);
 
                         this.setState({
                                                          deleteSuccess: true
