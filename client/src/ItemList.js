@@ -58,11 +58,11 @@ class ItemList extends React.Component {
         <div className="mvls-container">
             <div className="mvls-search">
                 <div className="mvls-search-item">
-                    <b>
+                    <span><b>
                      <Link to= "/search">
                          search
                     </Link>
-                    </b>
+                    </b></span>
                     </div>
             </div>
             <nav className="mvls-nav">

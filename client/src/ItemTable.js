@@ -67,7 +67,7 @@ function ItemTable({
                                     <td>
                                         <span
                                             className="mvls-table-link"
-                                            onClick={(item)}
+                                            onClick={ (item, items )}
                                         >
                                             Edit
                                         </span>
